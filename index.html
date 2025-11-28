@@ -240,8 +240,8 @@
                 { id: 4, name: 'Pedro Costa', email: 'pedro@email.com', password: '123', role: 'player', level: 3, photo: '🎯', paymentType: 'daily', stats: { wins: 28, losses: 22, championships: 1 }, monthlyPayments: {} }
             ],
             games: [
-                { id: 1, date: '2025-01-15', status: 'open', players: [], maxPlayers: 16, adminId: 1, teamSize: 6, twoWinsRule: true, pointsPerMatch: 25, matchHistory: [] },
-                { id: 2, date: '2025-01-08', status: 'finished', champion: 'Time Vermelho', players: [1, 2, 3, 4], teamSize: 6, twoWinsRule: true, pointsPerMatch: 25, matchHistory: [] }
+                { id: 1, date: '2025-01-15', status: 'open', players: [], maxPlayers: 16, adminId: 1, teamSize: 6, twoWinsRule: true, pointsPerMatch: 25, matchHistory: [], cutoffTime: '15:00' },
+                { id: 2, date: '2025-01-08', status: 'finished', champion: 'Time Vermelho', players: [1, 2, 3, 4], teamSize: 6, twoWinsRule: true, pointsPerMatch: 25, matchHistory: [], cutoffTime: '15:00' }
             ],
             currentGame: null,
             currentMatch: null,
@@ -371,18 +371,19 @@
         // ============================================
         // FUNÇÕES DE JOGOS
         // ============================================
-        function createGame(date, maxPlayers = 16, teamSize = 6, twoWinsRule = true, pointsPerMatch = 25) {
+        function createGame(date, maxPlayers = 16, teamSize = 6, twoWinsRule = true, pointsPerMatch = 25, cutoffTime = '15:00') {
             const newGame = {
                 id: AppState.games.length + 1,
                 date,
                 status: 'open',
-                players: [],
+                players: [], // Será array de objetos: { userId, timestamp, paymentType }
                 maxPlayers,
                 adminId: AppState.currentUser.id,
                 teamSize: parseInt(teamSize),
                 twoWinsRule: twoWinsRule,
                 pointsPerMatch: parseInt(pointsPerMatch),
-                matchHistory: []
+                matchHistory: [],
+                cutoffTime: cutoffTime
             };
             AppState.games.push(newGame);
             saveState();
@@ -391,22 +392,86 @@
 
         function joinGame(gameId) {
             const game = AppState.games.find(g => g.id === gameId);
-            if (game && game.status === 'open' && game.players.length < game.maxPlayers && !game.players.includes(AppState.currentUser.id)) {
-                game.players.push(AppState.currentUser.id);
+            if (!game || game.status !== 'open') return false;
+
+            // Verificar se já está na lista
+            const alreadyJoined = game.players.some(p => (typeof p === 'object' ? p.userId : p) === AppState.currentUser.id);
+            if (alreadyJoined) return false;
+
+            // Adicionar jogador com timestamp e tipo de pagamento
+            const playerEntry = {
+                userId: AppState.currentUser.id,
+                timestamp: Date.now(),
+                paymentType: AppState.currentUser.paymentType
+            };
+            game.players.push(playerEntry);
+
+            // Reorganizar lista com prioridade
+            reorganizePlayers(game);
+
+            saveState();
+            return true;
+        }
+
+        function leaveGame(gameId) {
+            const game = AppState.games.find(g => g.id === gameId);
+            if (game) {
+                game.players = game.players.filter(p => {
+                    const userId = typeof p === 'object' ? p.userId : p;
+                    return userId !== AppState.currentUser.id;
+                });
+
+                // Reorganizar lista após saída
+                reorganizePlayers(game);
+
                 saveState();
                 return true;
             }
             return false;
         }
 
-        function leaveGame(gameId) {
-            const game = AppState.games.find(g => g.id === gameId);
-            if (game) {
-                game.players = game.players.filter(id => id !== AppState.currentUser.id);
-                saveState();
-                return true;
+        // Reorganiza jogadores: mensalistas primeiro (até 15h), depois diaristas por ordem
+        function reorganizePlayers(game) {
+            if (!game.players || game.players.length === 0) return;
+
+            // Converter players antigos (apenas IDs) para novo formato
+            game.players = game.players.map(p => {
+                if (typeof p === 'number') {
+                    const user = AppState.users.find(u => u.id === p);
+                    return {
+                        userId: p,
+                        timestamp: Date.now(),
+                        paymentType: user?.paymentType || 'monthly'
+                    };
+                }
+                return p;
+            });
+
+            // Verificar se já passou do horário de corte
+            const now = new Date();
+            const [cutoffHour, cutoffMinute] = (game.cutoffTime || '15:00').split(':').map(Number);
+            const gameDate = new Date(game.date);
+            const cutoffDateTime = new Date(gameDate);
+            cutoffDateTime.setHours(cutoffHour, cutoffMinute, 0, 0);
+
+            const isPastCutoff = now > cutoffDateTime;
+
+            // Separar mensalistas e diaristas
+            const monthlyPlayers = game.players.filter(p => p.paymentType === 'monthly');
+            const dailyPlayers = game.players.filter(p => p.paymentType === 'daily');
+
+            // Ordenar ambos por timestamp (ordem de inscrição)
+            monthlyPlayers.sort((a, b) => a.timestamp - b.timestamp);
+            dailyPlayers.sort((a, b) => a.timestamp - b.timestamp);
+
+            // Reorganizar baseado no horário de corte
+            if (isPastCutoff) {
+                // Após 15h: todos por ordem de inscrição (já ordenados por tipo)
+                game.players = [...monthlyPlayers, ...dailyPlayers];
+            } else {
+                // Antes de 15h: mensalistas primeiro
+                game.players = [...monthlyPlayers, ...dailyPlayers];
             }
-            return false;
         }
 
         function addVisitor(gameId, name, level) {
@@ -423,8 +488,14 @@
             AppState.users.push(visitor);
 
             const game = AppState.games.find(g => g.id === gameId);
-            if (game && game.players.length < game.maxPlayers) {
-                game.players.push(visitor.id);
+            if (game) {
+                const playerEntry = {
+                    userId: visitor.id,
+                    timestamp: Date.now(),
+                    paymentType: 'daily'
+                };
+                game.players.push(playerEntry);
+                reorganizePlayers(game);
                 saveState();
                 return true;
             }
@@ -434,11 +505,42 @@
         function removePlayerFromGame(gameId, playerId) {
             const game = AppState.games.find(g => g.id === gameId);
             if (game) {
-                game.players = game.players.filter(id => id !== playerId);
+                game.players = game.players.filter(p => {
+                    const userId = typeof p === 'object' ? p.userId : p;
+                    return userId !== playerId;
+                });
+                reorganizePlayers(game);
                 saveState();
                 return true;
             }
             return false;
+        }
+
+        // Função auxiliar para obter jogadores de um jogo no novo formato
+        function getGamePlayers(game) {
+            if (!game || !game.players) return [];
+
+            return game.players.map(p => {
+                const userId = typeof p === 'object' ? p.userId : p;
+                const user = AppState.users.find(u => u.id === userId);
+                if (user) {
+                    return {
+                        ...user,
+                        timestamp: typeof p === 'object' ? p.timestamp : Date.now(),
+                        paymentType: typeof p === 'object' ? p.paymentType : (user.paymentType || 'monthly')
+                    };
+                }
+                return null;
+            }).filter(Boolean);
+        }
+
+        // Separa jogadores entre lista principal e suplentes
+        function splitMainAndReserve(game) {
+            const allPlayers = getGamePlayers(game);
+            const mainPlayers = allPlayers.slice(0, game.maxPlayers);
+            const reservePlayers = allPlayers.slice(game.maxPlayers);
+
+            return { mainPlayers, reservePlayers };
         }
 
         // ============================================
@@ -807,7 +909,8 @@
         function GameDetailScreen() {
             const game = AppState.currentGame;
             const isAdmin = AppState.currentUser?.role === 'admin';
-            const players = game.players.map(id => AppState.users.find(u => u.id === id)).filter(Boolean);
+            const { mainPlayers, reservePlayers } = splitMainAndReserve(game);
+            const players = [...mainPlayers, ...reservePlayers];
 
             return `
                 <div class="min-h-screen pb-20 animate-fadeIn">
@@ -2081,7 +2184,11 @@
                             </div>
                             <div class="flex items-start space-x-2 text-gray-300">
                                 <i class="fas fa-check text-green-400 mt-1"></i>
-                                <span>Gerenciar usuários (editar nível e perfil)</span>
+                                <span>Gerenciar usuários (editar nível, perfil e tipo de pagamento)</span>
+                            </div>
+                            <div class="flex items-start space-x-2 text-gray-300">
+                                <i class="fas fa-check text-green-400 mt-1"></i>
+                                <span>Controlar mensalidades dos mensalistas</span>
                             </div>
                         </div>
                     </div>
@@ -2164,17 +2271,33 @@
                         </div>
 
                         <!-- Gerenciar Usuários -->
-                        <div class="glass-card rounded-lg p-4">
+                        <div class="glass-card rounded-lg p-4 mb-3">
                             <h4 class="text-orange-400 font-bold mb-2">6️⃣ Gerenciar Usuários</h4>
                             <p class="text-gray-300 text-sm mb-2">
-                                Acesse a gestão de usuários pelo botão no <strong>Início</strong>
+                                Acesse a gestão de usuários pelo botão <strong>USUÁRIOS</strong> no Início
                             </p>
                             <div class="bg-gray-700/50 rounded p-3 text-sm text-gray-400">
                                 👥 Visualize todos os usuários cadastrados<br>
                                 🎯 Edite o nível de habilidade (1-6)<br>
                                 👑 Troque perfil entre Admin e Jogador<br>
+                                💰 Troque tipo de pagamento (Mensalista/Diarista)<br>
                                 📊 Veja estatísticas de cada usuário<br>
-                                🔒 Não é possível editar seu próprio perfil
+                                ⚠️ Você pode editar apenas seu tipo de pagamento
+                            </div>
+                        </div>
+
+                        <!-- Controlar Mensalidades -->
+                        <div class="glass-card rounded-lg p-4">
+                            <h4 class="text-orange-400 font-bold mb-2">7️⃣ Controlar Mensalidades</h4>
+                            <p class="text-gray-300 text-sm mb-2">
+                                Acesse pelo botão <strong>MENSALIDADES</strong> no Início
+                            </p>
+                            <div class="bg-gray-700/50 rounded p-3 text-sm text-gray-400">
+                                💵 <strong>Definir Valor:</strong> Digite o valor total da mensalidade do mês<br>
+                                🧮 <strong>Cálculo Automático:</strong> Sistema divide entre os mensalistas<br>
+                                ✅ <strong>Marcar Pagamentos:</strong> Clique em "Marcar como Pago" quando receber<br>
+                                📊 <strong>Acompanhar:</strong> Veja quantos já pagaram em tempo real<br>
+                                📅 <strong>Novo Mês:</strong> Defina novo valor (pode ser diferente)
                             </div>
                         </div>
                     </div>
@@ -2213,9 +2336,13 @@
                             </div>
                         </div>
                         <div class="mt-3 pt-3 border-t border-gray-700">
-                            <div class="flex items-start space-x-2 text-gray-400 text-sm">
+                            <div class="flex items-start space-x-2 text-gray-400 text-sm mb-2">
                                 <i class="fas fa-times text-red-400 mt-1"></i>
                                 <span>Você não pode criar jogos, adicionar visitantes ou controlar placar</span>
+                            </div>
+                            <div class="flex items-start space-x-2 text-gray-400 text-sm">
+                                <i class="fas fa-times text-red-400 mt-1"></i>
+                                <span>Você não pode gerenciar usuários ou controlar mensalidades</span>
                             </div>
                         </div>
                     </div>
