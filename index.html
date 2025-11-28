@@ -302,8 +302,20 @@
             const matchHistory = getCookie('voleiProMatchHistory');
             const monthlyFees = getCookie('voleiProMonthlyFees');
 
-            if (user) AppState.currentUser = user;
-            if (users && users.length > 0) AppState.users = users;
+            if (user) {
+                // Migração do usuário atual
+                if (!user.paymentType) user.paymentType = 'monthly';
+                if (!user.monthlyPayments) user.monthlyPayments = {};
+                AppState.currentUser = user;
+            }
+            if (users && users.length > 0) {
+                // Migração: garantir que todos os usuários tenham os novos campos
+                AppState.users = users.map(u => {
+                    if (!u.paymentType) u.paymentType = 'monthly';
+                    if (!u.monthlyPayments) u.monthlyPayments = {};
+                    return u;
+                });
+            }
             if (games && games.length > 0) AppState.games = games;
             if (activeMatch) AppState.activeMatch = activeMatch;
             if (teams && teams.length > 0) AppState.teams = teams;
@@ -1512,8 +1524,14 @@
                                         </button>
                                     </div>
                                 ` : `
-                                    <div class="text-center text-gray-500 text-sm py-2">
-                                        <i class="fas fa-lock mr-1"></i>Você não pode editar seu próprio perfil
+                                    <div class="space-y-2">
+                                        <div class="text-center text-gray-500 text-sm py-2 mb-2">
+                                            <i class="fas fa-lock mr-1"></i>Você não pode editar nível e perfil próprios
+                                        </div>
+                                        <button onclick="togglePaymentType(${user.id})"
+                                            class="w-full py-2 rounded-lg text-white text-sm font-bold ${user.paymentType === 'monthly' ? 'bg-green-600 hover:bg-green-700' : 'bg-cyan-600 hover:bg-cyan-700'}">
+                                            <i class="fas fa-wallet mr-1"></i>Trocar para ${user.paymentType === 'monthly' ? 'Diarista' : 'Mensalista'}
+                                        </button>
                                     </div>
                                 `}
                             </div>
