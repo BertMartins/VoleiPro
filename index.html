@@ -230,40 +230,64 @@
         // ============================================
         // SISTEMA DE DADOS (Mockado em memória)
         // ============================================
-      const AppState = {
-    currentUser: null,
-    currentView: 'login',
-    users: [
-        { id: 1, name: 'Heberte Martins', email: 'heberteuallan1@gmail.com', password: '@Martins', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 2, name: 'Dourivan', email: 'dourivan@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 3, name: 'Mayara Chagas', email: 'mayara@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 4, name: 'Sr. Rodrigues', email: 'rodrigues@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 5, name: 'Beatriz Carvalho', email: 'beatriz@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 6, name: 'Bruna', email: 'bruna@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 7, name: 'Diogo', email: 'diogo@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 8, name: 'Renata Cryslaine', email: 'renata@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 9, name: 'Julia Bomfim', email: 'Julia@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 10, name: 'Kevin Ouro', email: 'Kevin@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 11, name: 'Gustavo', email: 'Gustavo@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 12, name: 'Lucas Dias', email: 'Lucas@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 13, name: 'Sarah', email: 'Sarah@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 14, name: 'Lowren', email: 'Lowren@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-        { id: 15, name: 'Luan Compadre', email: 'Luan@gmail.com', password: '123456', role: 'admin', level: 5, photo: '👨‍💼', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
-    ],
-
-    games: [
-        { id: 1, date: '2025-01-15', status: 'open', players: [], maxPlayers: 16, adminId: 1, teamSize: 6, twoWinsRule: true, pointsPerMatch: 25, cutoffTime: '15:00', matchHistory: [] },
-        { id: 2, date: '2025-01-08', status: 'finished', champion: 'Time Vermelho', players: [1,2,3,4], teamSize: 6, twoWinsRule: true, pointsPerMatch: 25, cutoffTime: '15:00', matchHistory: [] }
-    ],
-
-    currentGame: null,
-    currentMatch: null,
-    activeMatch: null,
-    teams: [],
-    matchHistory: [],
-    monthlyFees: {}
-};
-
+        const AppState = {
+            currentUser: null,
+            currentView: 'login',
+            users: [
+                { id: 1, name: 'Heberte', email: 'heberte@email.com', password: '123', role: 'admin', level: 4, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 2, name: 'Bea', email: 'bea@email.com', password: '123', role: 'player', level: 5, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 3, name: 'Gustavo R.', email: 'gustavo.r@email.com', password: '123', role: 'player', level: 4, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 4, name: 'Diogo', email: 'diogo@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 5, name: 'Lowren', email: 'lowren@email.com', password: '123', role: 'player', level: 4, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 6, name: 'Kevin', email: 'kevin@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 7, name: 'Júlia', email: 'julia@email.com', password: '123', role: 'player', level: 5, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 8, name: 'Luan', email: 'luan@email.com', password: '123', role: 'player', level: 4, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 9, name: 'Mayara', email: 'mayara@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 10, name: 'Rodrigues', email: 'rodrigues@email.com', password: '123', role: 'player', level: 4, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 11, name: 'Renata', email: 'renata@email.com', password: '123', role: 'player', level: 5, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 12, name: 'Sarah', email: 'sarah@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 13, name: 'Bruna', email: 'bruna@email.com', password: '123', role: 'player', level: 4, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 14, name: 'Lucas', email: 'lucas@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 15, name: 'Dourivan ', email: 'Dourivan@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} },
+                { id: 16, name: 'Cleverton ', email: 'Cleverton@email.com', password: '123', role: 'player', level: 3, photo: '🏐', paymentType: 'monthly', stats: { wins: 0, losses: 0, championships: 0 }, monthlyPayments: {} }
+            ],
+            games: [
+                {
+                    id: 1,
+                    date: '2024-12-04',
+                    status: 'open',
+                    players: [
+                        { userId: 1, timestamp: Date.now() - 12000000, paymentType: 'monthly' }, 
+                        { userId: 2, timestamp: Date.now() - 11000000, paymentType: 'monthly' },  
+                        { userId: 3, timestamp: Date.now() - 10000000, paymentType: 'monthly' },    
+                        { userId: 4, timestamp: Date.now() - 9000000, paymentType: 'monthly' },   
+                        { userId: 5, timestamp: Date.now() - 8000000, paymentType: 'monthly' },   
+                        { userId: 6, timestamp: Date.now() - 7000000, paymentType: 'monthly' },     
+                        { userId: 7, timestamp: Date.now() - 6000000, paymentType: 'monthly' },   
+                        { userId: 8, timestamp: Date.now() - 5000000, paymentType: 'monthly' },   
+                        { userId: 9, timestamp: Date.now() - 4000000, paymentType: 'monthly' },   
+                        { userId: 10, timestamp: Date.now() - 3000000, paymentType: 'monthly' },  
+                        { userId: 11, timestamp: Date.now() - 2000000, paymentType: 'monthly' }, 
+                        { userId: 12, timestamp: Date.now() - 1000000, paymentType: 'monthly' },    
+                        { userId: 13, timestamp: Date.now() - 1000000, paymentType: 'monthly' }
+                    ],
+                    maxPlayers: 16,
+                    adminId: 1,
+                    teamSize: 4,
+                    twoWinsRule: true,
+                    pointsPerMatch: 10,
+                    matchHistory: [],
+                    cutoffTime: '15:00'
+                }
+            ],
+            currentGame: null,
+            currentMatch: null,
+            activeMatch: null,
+            teams: [],
+            matchHistory: [],
+            monthlyFees: {}, // { '2025-01': 600, '2025-02': 600 }
+            financialControl: {} // { '2024-12': { arenaPaid: 0, dailyBox: 0, dailyPlayers: [] } }
+        };
 
         // ============================================
         // FUNÇÕES DE COOKIES
@@ -304,6 +328,7 @@
             setCookie('voleiProCurrentGame', AppState.currentGame);
             setCookie('voleiProMatchHistory', AppState.matchHistory);
             setCookie('voleiProMonthlyFees', AppState.monthlyFees);
+            setCookie('voleiProFinancialControl', AppState.financialControl);
         }
 
         function loadState() {
@@ -315,6 +340,7 @@
             const currentGame = getCookie('voleiProCurrentGame');
             const matchHistory = getCookie('voleiProMatchHistory');
             const monthlyFees = getCookie('voleiProMonthlyFees');
+            const financialControl = getCookie('voleiProFinancialControl');
 
             if (user) {
                 // Migração do usuário atual
@@ -336,6 +362,145 @@
             if (currentGame) AppState.currentGame = currentGame;
             if (matchHistory && matchHistory.length > 0) AppState.matchHistory = matchHistory;
             if (monthlyFees) AppState.monthlyFees = monthlyFees;
+            if (financialControl) AppState.financialControl = financialControl;
+
+            // Auto-limpar visitantes expirados
+            autoCleanupExpiredVisitors();
+        }
+
+        // ============================================
+        // FUNÇÕES DE LIMPEZA DE VISITANTES
+        // ============================================
+        function autoCleanupExpiredVisitors() {
+            const now = new Date();
+            const oneDayInMs = 24 * 60 * 60 * 1000;
+
+            // Encontrar IDs de visitantes que participaram de jogos
+            const visitorIds = AppState.users
+                .filter(u => u.role === 'visitor')
+                .map(u => u.id);
+
+            if (visitorIds.length === 0) return;
+
+            // Para cada visitante, verificar se há jogos em que participou
+            const visitorsToDelete = [];
+
+            visitorIds.forEach(visitorId => {
+                // Encontrar todos os jogos que o visitante participou
+                const gamesWithVisitor = AppState.games.filter(game => {
+                    return game.players.some(p => {
+                        const userId = typeof p === 'object' ? p.userId : p;
+                        return userId === visitorId;
+                    });
+                });
+
+                // Se não participou de nenhum jogo, não deletar
+                if (gamesWithVisitor.length === 0) return;
+
+                // Verificar se todos os jogos já passaram há mais de 1 dia
+                const allGamesExpired = gamesWithVisitor.every(game => {
+                    const gameDate = new Date(game.date);
+                    const dayAfterGame = gameDate.getTime() + oneDayInMs;
+                    return now.getTime() > dayAfterGame;
+                });
+
+                if (allGamesExpired) {
+                    visitorsToDelete.push(visitorId);
+                }
+            });
+
+            // Deletar visitantes expirados
+            if (visitorsToDelete.length > 0) {
+                AppState.users = AppState.users.filter(u => !visitorsToDelete.includes(u.id));
+                saveState();
+            }
+        }
+
+        function manualCleanupAllVisitors() {
+            const visitorCount = AppState.users.filter(u => u.role === 'visitor').length;
+
+            if (visitorCount === 0) {
+                showCustomAlert('Nenhum visitante encontrado para limpar.');
+                return;
+            }
+
+            showCustomConfirm(
+                `Tem certeza que deseja excluir ${visitorCount} visitante${visitorCount > 1 ? 's' : ''}? Esta ação não pode ser desfeita.`,
+                () => {
+                    // Remover todos os visitantes
+                    AppState.users = AppState.users.filter(u => u.role !== 'visitor');
+
+                    // Remover visitantes de todos os jogos
+                    AppState.games.forEach(game => {
+                        const originalLength = game.players.length;
+                        game.players = game.players.filter(p => {
+                            const userId = typeof p === 'object' ? p.userId : p;
+                            const user = AppState.users.find(u => u.id === userId);
+                            return user !== undefined;
+                        });
+                    });
+
+                    saveState();
+                    showCustomAlert(`${visitorCount} visitante${visitorCount > 1 ? 's foram excluídos' : ' foi excluído'} com sucesso!`);
+                    render();
+                }
+            );
+        }
+
+        // ============================================
+        // FUNÇÕES DE DIÁLOGOS CUSTOMIZADOS
+        // ============================================
+        function showCustomAlert(message) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 animate-fadeIn';
+            modal.innerHTML = `
+                <div class="glass-card rounded-2xl p-6 max-w-sm w-full mx-4 border-2 border-orange-500">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-info-circle text-orange-400 text-4xl mb-3"></i>
+                        <p class="text-white text-lg">${message}</p>
+                    </div>
+                    <button onclick="this.closest('.fixed').remove()"
+                        class="btn-primary w-full py-3 rounded-lg text-white font-bold">
+                        <i class="fas fa-check mr-2"></i>OK
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function showCustomConfirm(message, onConfirm) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 animate-fadeIn';
+            modal.innerHTML = `
+                <div class="glass-card rounded-2xl p-6 max-w-sm w-full mx-4 border-2 border-orange-500">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 text-4xl mb-3"></i>
+                        <p class="text-white text-lg">${message}</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="this.closest('.fixed').remove()"
+                            class="flex-1 bg-gray-600 hover:bg-gray-700 py-3 rounded-lg text-white font-bold">
+                            <i class="fas fa-times mr-2"></i>Cancelar
+                        </button>
+                        <button onclick="this.closest('.fixed').remove(); (${onConfirm})()"
+                            class="flex-1 btn-primary py-3 rounded-lg text-white font-bold">
+                            <i class="fas fa-check mr-2"></i>Confirmar
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Store the callback function in a global variable so it can be called
+            window._confirmCallback = onConfirm;
+            const confirmBtn = modal.querySelector('.btn-primary');
+            confirmBtn.onclick = function() {
+                modal.remove();
+                if (window._confirmCallback) {
+                    window._confirmCallback();
+                    window._confirmCallback = null;
+                }
+            };
         }
 
         // ============================================
@@ -420,6 +585,11 @@
             };
             game.players.push(playerEntry);
 
+            // Se for diarista ou visitante, adicionar R$ 15 à caixinha
+            if (AppState.currentUser.paymentType === 'daily' || AppState.currentUser.role === 'visitor') {
+                addToDailyBox(game.date, AppState.currentUser.id, AppState.currentUser.name);
+            }
+
             // Reorganizar lista com prioridade
             reorganizePlayers(game);
 
@@ -444,7 +614,7 @@
             return false;
         }
 
-        // Reorganiza jogadores: mensalistas primeiro (até 15h), depois diaristas por ordem
+        // Reorganiza jogadores: mensalistas na lista principal, diaristas como suplentes (antes de 15h)
         function reorganizePlayers(game) {
             if (!game.players || game.players.length === 0) return;
 
@@ -478,12 +648,25 @@
             monthlyPlayers.sort((a, b) => a.timestamp - b.timestamp);
             dailyPlayers.sort((a, b) => a.timestamp - b.timestamp);
 
-            // Reorganizar baseado no horário de corte
             if (isPastCutoff) {
-                // Após 15h: todos por ordem de inscrição (já ordenados por tipo)
-                game.players = [...monthlyPlayers, ...dailyPlayers];
+                // APÓS 15h: suplentes diaristas podem preencher vagas
+                // Pega mensalistas + diaristas necessários para completar a lista
+                const availableSpots = game.maxPlayers;
+                let finalList = [...monthlyPlayers];
+
+                // Adiciona diaristas até completar o limite
+                const spotsNeeded = availableSpots - finalList.length;
+                if (spotsNeeded > 0) {
+                    finalList = [...finalList, ...dailyPlayers.slice(0, spotsNeeded)];
+                }
+
+                // Resto vai para suplentes
+                const remaining = dailyPlayers.slice(spotsNeeded > 0 ? spotsNeeded : 0);
+                game.players = [...finalList, ...remaining];
             } else {
-                // Antes de 15h: mensalistas primeiro
+                // ANTES de 15h: mensalistas na lista, diaristas como suplentes
+                // Mensalistas preenchem a lista principal (até o limite)
+                // Diaristas ficam como suplentes (após o limite)
                 game.players = [...monthlyPlayers, ...dailyPlayers];
             }
         }
@@ -812,6 +995,10 @@
                                         <i class="fas fa-wallet mr-2"></i>MENSALIDADES
                                     </button>
                                 </div>
+                                <button onclick="navigateTo('financial')"
+                                    class="bg-purple-600 hover:bg-purple-700 w-full py-4 rounded-xl text-white font-bold shadow-lg">
+                                    <i class="fas fa-chart-line mr-2"></i>CONTROLE FINANCEIRO
+                                </button>
                             </div>
                         ` : ''}
 
@@ -857,9 +1044,14 @@
 
         // Card de Jogo
         function GameCard(game) {
-            const isJoined = game.players.includes(AppState.currentUser.id);
-            const isFull = game.players.length >= game.maxPlayers;
+            const isJoined = game.players.some(p => {
+                const userId = typeof p === 'object' ? p.userId : p;
+                return userId === AppState.currentUser.id;
+            });
+            const { mainPlayers, reservePlayers } = splitMainAndReserve(game);
+            const isFull = mainPlayers.length >= game.maxPlayers;
             const isInProgress = game.status === 'in_progress';
+            const isReserve = reservePlayers.some(p => p.id === AppState.currentUser.id);
 
             return `
                 <div class="glass-card rounded-xl p-5 shadow-lg hover:shadow-2xl transition ${isInProgress ? 'border-2 border-green-500' : ''}">
@@ -890,7 +1082,7 @@
                     </div>
 
                     <div class="flex gap-2">
-                        ${!isJoined && !isFull && !isInProgress ? `
+                        ${!isJoined && !isInProgress ? `
                             <button onclick="handleJoinGame(${game.id})"
                                 class="btn-primary flex-1 py-3 rounded-lg text-white font-bold">
                                 <i class="fas fa-user-plus mr-2"></i>PARTICIPAR
@@ -900,11 +1092,17 @@
                         ${isJoined && !isInProgress ? `
                             <button onclick="handleLeaveGame(${game.id})"
                                 class="bg-red-500 hover:bg-red-600 flex-1 py-3 rounded-lg text-white font-bold">
-                                <i class="fas fa-user-minus mr-2"></i>SAIR
+                                <i class="fas fa-user-minus mr-2"></i>SAIR${isReserve ? ' (SUPLENTE)' : ''}
                             </button>
                         ` : ''}
 
-                        ${isInProgress && isFull ? `
+                        ${isJoined && isInProgress ? `
+                            <div class="flex-1 bg-green-500/20 border border-green-500 py-3 px-4 rounded-lg text-green-300 text-center font-bold text-sm">
+                                <i class="fas fa-check mr-2"></i>Você está participando
+                            </div>
+                        ` : ''}
+
+                        ${!isJoined && isInProgress ? `
                             <div class="flex-1 bg-yellow-500/20 border border-yellow-500 py-3 px-4 rounded-lg text-yellow-300 text-center font-bold text-sm">
                                 <i class="fas fa-lock mr-2"></i>Lista Fechada
                             </div>
@@ -994,50 +1192,103 @@
                             </div>
                         </div>
 
-                        <!-- Jogadores Confirmados -->
-                        <div class="glass-card rounded-xl p-5">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-white font-bold text-lg">
-                                    <i class="fas fa-users mr-2 text-orange-400"></i>
-                                    Jogadores (${players.length})
+                        <!-- Lista Principal -->
+                        ${mainPlayers.length > 0 ? `
+                            <div class="glass-card rounded-xl p-5 border-2 border-green-500">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-white font-bold text-lg">
+                                        <i class="fas fa-check-circle mr-2 text-green-400"></i>
+                                        Lista Principal (${mainPlayers.length}/${game.maxPlayers})
+                                    </h3>
+                                    ${isAdmin && game.status === 'open' ? `
+                                        <button onclick="showAddVisitorModal(${game.id})"
+                                            class="btn-primary px-4 py-2 rounded-lg text-white text-sm font-bold">
+                                            <i class="fas fa-user-plus mr-1"></i>Visitante
+                                        </button>
+                                    ` : ''}
+                                </div>
+                                <div class="space-y-3 max-h-96 overflow-y-auto hide-scrollbar">
+                                    ${mainPlayers.map((player, index) => `
+                                        <div class="flex items-center justify-between bg-gray-700/50 rounded-lg p-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="text-gray-400 font-bold w-6">#${index + 1}</div>
+                                                <div class="text-2xl">${player.photo}</div>
+                                                <div>
+                                                    <div class="text-white font-medium">
+                                                        ${player.name}
+                                                        ${player.role === 'visitor' ? '<span class="text-xs text-yellow-400 ml-2">(Visitante)</span>' : ''}
+                                                        ${player.paymentType === 'monthly' ? '<span class="text-xs text-green-400 ml-2">💰</span>' : ''}
+                                                    </div>
+                                                    <div class="text-gray-400 text-sm">
+                                                        ${player.stats.wins}V / ${player.stats.losses}D
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <div class="level-badge level-${player.level}">
+                                                    ${player.level}
+                                                </div>
+                                                ${isAdmin && game.status === 'open' ? `
+                                                    <button onclick="handleRemovePlayer(${game.id}, ${player.id})"
+                                                        class="text-red-400 hover:text-red-300 p-2">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                ` : ''}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <!-- Suplentes -->
+                        ${reservePlayers.length > 0 ? `
+                            <div class="glass-card rounded-xl p-5 border-2 border-yellow-500">
+                                <h3 class="text-white font-bold text-lg mb-4">
+                                    <i class="fas fa-clock mr-2 text-yellow-400"></i>
+                                    Suplentes (${reservePlayers.length})
                                 </h3>
-                                ${isAdmin && game.status === 'open' ? `
-                                    <button onclick="showAddVisitorModal(${game.id})"
-                                        class="btn-primary px-4 py-2 rounded-lg text-white text-sm font-bold">
-                                        <i class="fas fa-user-plus mr-1"></i>Visitante
-                                    </button>
-                                ` : ''}
-                            </div>
-                            <div class="space-y-3 max-h-96 overflow-y-auto hide-scrollbar">
-                                ${players.map(player => `
-                                    <div class="flex items-center justify-between bg-gray-700/50 rounded-lg p-3">
-                                        <div class="flex items-center space-x-3">
-                                            <div class="text-2xl">${player.photo}</div>
-                                            <div>
-                                                <div class="text-white font-medium">
-                                                    ${player.name}
-                                                    ${player.role === 'visitor' ? '<span class="text-xs text-yellow-400 ml-2">(Visitante)</span>' : ''}
-                                                </div>
-                                                <div class="text-gray-400 text-sm">
-                                                    ${player.stats.wins}V / ${player.stats.losses}D
+                                <div class="bg-yellow-500/20 border border-yellow-500 rounded-lg p-3 mb-3 text-center">
+                                    <i class="fas fa-info-circle text-yellow-400 mr-2"></i>
+                                    <span class="text-yellow-300 text-sm">
+                                        ${new Date() < new Date(new Date(game.date).setHours(15, 0, 0)) ?
+                                            'Suplentes sobem para a lista às 15h se houver vagas' :
+                                            'Suplentes podem subir se alguém da lista sair'}
+                                    </span>
+                                </div>
+                                <div class="space-y-3 max-h-64 overflow-y-auto hide-scrollbar">
+                                    ${reservePlayers.map((player, index) => `
+                                        <div class="flex items-center justify-between bg-gray-700/50 rounded-lg p-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="text-yellow-400 font-bold w-6">#${index + 1}</div>
+                                                <div class="text-2xl">${player.photo}</div>
+                                                <div>
+                                                    <div class="text-white font-medium">
+                                                        ${player.name}
+                                                        ${player.role === 'visitor' ? '<span class="text-xs text-yellow-400 ml-2">(Visitante)</span>' : ''}
+                                                        <span class="text-xs text-cyan-400 ml-2">🎫 Diarista</span>
+                                                    </div>
+                                                    <div class="text-gray-400 text-sm">
+                                                        ${player.stats.wins}V / ${player.stats.losses}D
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <div class="level-badge level-${player.level}">
-                                                ${player.level}
+                                            <div class="flex items-center space-x-2">
+                                                <div class="level-badge level-${player.level}">
+                                                    ${player.level}
+                                                </div>
+                                                ${isAdmin && game.status === 'open' ? `
+                                                    <button onclick="handleRemovePlayer(${game.id}, ${player.id})"
+                                                        class="text-red-400 hover:text-red-300 p-2">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                ` : ''}
                                             </div>
-                                            ${isAdmin && game.status === 'open' ? `
-                                                <button onclick="handleRemovePlayer(${game.id}, ${player.id})"
-                                                    class="text-red-400 hover:text-red-300 p-2">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            ` : ''}
                                         </div>
-                                    </div>
-                                `).join('')}
+                                    `).join('')}
+                                </div>
                             </div>
-                        </div>
+                        ` : ''}
 
                         <!-- Ações Admin -->
                         ${isAdmin && game.status === 'open' && players.length >= (game.teamSize * 2) ? `
@@ -1502,6 +1753,7 @@
                             </h3>
                             <div class="space-y-3">
                                 ${AppState.users
+                                    .filter(u => u.role !== 'visitor')
                                     .sort((a, b) => b.stats.wins - a.stats.wins)
                                     .slice(0, 5)
                                     .map((u, index) => `
@@ -1559,7 +1811,7 @@
                     <div class="p-6 space-y-4">
                         <!-- Info -->
                         <div class="glass-card rounded-xl p-4">
-                            <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center justify-between text-sm mb-3">
                                 <div class="text-gray-300">
                                     <i class="fas fa-users mr-2 text-orange-400"></i>
                                     Total de usuários: <span class="text-white font-bold">${allUsers.length}</span>
@@ -1569,6 +1821,20 @@
                                     Admins: <span class="text-white font-bold">${allUsers.filter(u => u.role === 'admin').length}</span>
                                 </div>
                             </div>
+                            ${allUsers.filter(u => u.role === 'visitor').length > 0 ? `
+                                <div class="border-t border-gray-600 pt-3">
+                                    <div class="flex items-center justify-between">
+                                        <div class="text-gray-300 text-sm">
+                                            <i class="fas fa-user-clock mr-2 text-purple-400"></i>
+                                            Visitantes: <span class="text-white font-bold">${allUsers.filter(u => u.role === 'visitor').length}</span>
+                                        </div>
+                                        <button onclick="manualCleanupAllVisitors()"
+                                            class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-white text-xs font-bold transition">
+                                            <i class="fas fa-trash mr-1"></i>Limpar Visitantes
+                                        </button>
+                                    </div>
+                                </div>
+                            ` : ''}
                         </div>
 
                         <!-- Lista de Usuários -->
@@ -1823,6 +2089,170 @@
             `;
         }
 
+        // Tela de Controle Financeiro (Admin apenas)
+        function FinancialControlScreen() {
+            if (AppState.currentUser?.role !== 'admin') {
+                navigateTo('dashboard');
+                return '';
+            }
+
+            const now = new Date();
+            const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+
+            // Obter dados do mês atual
+            const monthData = AppState.financialControl[currentMonth] || {
+                arenaPaid: 0,
+                dailyBox: 0,
+                dailyPlayers: []
+            };
+
+            // Calcular total arrecadado
+            const totalCollected = monthData.arenaPaid + monthData.dailyBox;
+
+            // Obter valor total da mensalidade
+            const totalMonthlyFee = AppState.monthlyFees[currentMonth] || 0;
+
+            // Calcular saldo (caixinha - arena paga)
+            const balance = monthData.dailyBox;
+
+            return `
+                <div class="min-h-screen pb-20 animate-fadeIn">
+                    <div class="gradient-orange p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h1 class="title-font text-3xl text-white mb-2">CONTROLE FINANCEIRO</h1>
+                                <p class="text-orange-100">Gestão de receitas e despesas</p>
+                            </div>
+                            <button onclick="navigateTo('dashboard')"
+                                class="text-white hover:bg-white/20 p-2 rounded-lg transition">
+                                <i class="fas fa-times text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <!-- Seletor de Mês -->
+                        <div class="glass-card rounded-xl p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-white font-bold text-lg">
+                                    <i class="fas fa-calendar mr-2 text-orange-400"></i>
+                                    ${new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })}
+                                </h3>
+                            </div>
+
+                            <!-- Cards de Resumo -->
+                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 text-white">
+                                    <div class="text-xs opacity-80 mb-1">Pago para Arena</div>
+                                    <div class="text-2xl font-bold">R$ ${monthData.arenaPaid.toFixed(2)}</div>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-4 text-white">
+                                    <div class="text-xs opacity-80 mb-1">Caixinha Diaristas</div>
+                                    <div class="text-2xl font-bold">R$ ${monthData.dailyBox.toFixed(2)}</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-4 text-white">
+                                    <div class="text-xs opacity-80 mb-1">Total Arrecadado</div>
+                                    <div class="text-2xl font-bold">R$ ${totalCollected.toFixed(2)}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detalhamento: Mensalistas -->
+                        <div class="glass-card rounded-xl p-5">
+                            <h3 class="text-white font-bold text-lg mb-4">
+                                <i class="fas fa-building mr-2 text-blue-400"></i>
+                                Pagamentos para Arena (Mensalistas)
+                            </h3>
+                            <div class="bg-blue-500/20 border border-blue-500 rounded-lg p-4 mb-3">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="text-blue-300 text-sm">Valor Total Mensalidade</div>
+                                        <div class="text-white text-xl font-bold">R$ ${totalMonthlyFee.toFixed(2)}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-blue-300 text-sm text-right">Recebido</div>
+                                        <div class="text-white text-xl font-bold">R$ ${monthData.arenaPaid.toFixed(2)}</div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 bg-blue-900/30 rounded-full h-2">
+                                    <div class="bg-blue-400 h-2 rounded-full transition-all" style="width: ${totalMonthlyFee > 0 ? (monthData.arenaPaid / totalMonthlyFee * 100) : 0}%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Valores são contabilizados automaticamente quando mensalistas marcam pagamento
+                            </p>
+                        </div>
+
+                        <!-- Detalhamento: Diaristas -->
+                        <div class="glass-card rounded-xl p-5">
+                            <h3 class="text-white font-bold text-lg mb-4">
+                                <i class="fas fa-piggy-bank mr-2 text-green-400"></i>
+                                Caixinha de Diaristas
+                            </h3>
+
+                            ${monthData.dailyPlayers && monthData.dailyPlayers.length > 0 ? `
+                                <div class="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="text-green-300 text-sm">Total em Caixa</div>
+                                        <div class="text-white text-2xl font-bold">R$ ${monthData.dailyBox.toFixed(2)}</div>
+                                    </div>
+                                    <div class="text-green-300 text-xs">
+                                        ${monthData.dailyPlayers.length} participação${monthData.dailyPlayers.length > 1 ? 'ões' : ''} × R$ 15,00
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2 max-h-64 overflow-y-auto hide-scrollbar">
+                                    <div class="text-gray-400 text-xs mb-2 font-bold">Histórico de Participações:</div>
+                                    ${monthData.dailyPlayers.map(player => `
+                                        <div class="bg-gray-700/50 rounded-lg p-3 flex items-center justify-between">
+                                            <div>
+                                                <div class="text-white font-medium">${player.userName}</div>
+                                                <div class="text-gray-400 text-xs">
+                                                    ${new Date(player.gameDate).toLocaleDateString('pt-BR')}
+                                                </div>
+                                            </div>
+                                            <div class="text-green-400 font-bold">+ R$ 15,00</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : `
+                                <div class="bg-gray-700/30 rounded-lg p-8 text-center">
+                                    <div class="text-4xl mb-3">💰</div>
+                                    <div class="text-gray-400">Nenhuma participação de diarista este mês</div>
+                                </div>
+                            `}
+
+                            <p class="text-gray-400 text-sm mt-3">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                R$ 15 é adicionado automaticamente quando diarista/visitante participa de um jogo
+                            </p>
+                        </div>
+
+                        <!-- Informações Adicionais -->
+                        <div class="bg-orange-500/20 border border-orange-500 rounded-xl p-4">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-lightbulb text-orange-400 text-xl mt-1"></i>
+                                <div class="flex-1">
+                                    <div class="text-orange-300 font-bold mb-1">Como funciona?</div>
+                                    <div class="text-orange-100 text-sm space-y-1">
+                                        <p>• Quando mensalista paga → valor vai para "Pago para Arena"</p>
+                                        <p>• Quando diarista/visitante participa de jogo → R$ 15 vai para "Caixinha"</p>
+                                        <p>• Tudo é contabilizado automaticamente por mês</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${BottomNav('dashboard')}
+                </div>
+            `;
+        }
+
         // Navegação Inferior
         function BottomNav(active) {
             const hasActiveMatch = AppState.activeMatch !== null;
@@ -1895,7 +2325,11 @@
         function handleCreateTeams(gameId) {
             const game = AppState.games.find(g => g.id === gameId);
             if (game) {
-                createBalancedTeams(game.players, game.teamSize);
+                // Usar apenas jogadores da lista principal (não suplentes)
+                const { mainPlayers } = splitMainAndReserve(game);
+                const playerIds = mainPlayers.map(p => p.id);
+
+                createBalancedTeams(playerIds, game.teamSize);
                 game.status = 'in_progress';
                 AppState.currentGame = game;
                 saveState();
@@ -2043,6 +2477,26 @@
             const match = AppState.activeMatch;
             if (!match) return;
 
+            // Determinar time vencedor e perdedor
+            const winnerTeam = match.score1 > match.score2 ? match.team1 : match.team2;
+            const loserTeam = match.score1 > match.score2 ? match.team2 : match.team1;
+
+            // Atualizar estatísticas dos jogadores do time vencedor
+            winnerTeam.players.forEach(player => {
+                const user = AppState.users.find(u => u.id === player.id);
+                if (user) {
+                    user.stats.wins = (user.stats.wins || 0) + 1;
+                }
+            });
+
+            // Atualizar estatísticas dos jogadores do time perdedor
+            loserTeam.players.forEach(player => {
+                const user = AppState.users.find(u => u.id === player.id);
+                if (user) {
+                    user.stats.losses = (user.stats.losses || 0) + 1;
+                }
+            });
+
             // Adicionar ao histórico
             const matchRecord = {
                 matchNumber: match.matchNumber,
@@ -2092,12 +2546,30 @@
                 // Encontrar o time com mais vitórias
                 let maxWins = 0;
                 let champion = '';
+                let championTeamIndex = -1;
+
                 Object.keys(teamWins).forEach(team => {
                     if (teamWins[team] > maxWins) {
                         maxWins = teamWins[team];
                         champion = team;
                     }
                 });
+
+                // Encontrar o índice do time campeão
+                if (champion && AppState.teams) {
+                    championTeamIndex = AppState.teams.findIndex(t => t.name === champion);
+
+                    // Atualizar estatísticas de campeonatos dos jogadores do time vencedor
+                    if (championTeamIndex !== -1) {
+                        const championTeam = AppState.teams[championTeamIndex];
+                        championTeam.players.forEach(player => {
+                            const user = AppState.users.find(u => u.id === player.id);
+                            if (user) {
+                                user.stats.championships = (user.stats.championships || 0) + 1;
+                            }
+                        });
+                    }
+                }
 
                 game.champion = champion || 'Nenhum vencedor';
                 game.finalStats = teamWins;
@@ -2862,6 +3334,64 @@
             render();
         }
 
+        // ============================================
+        // FUNÇÕES DE CONTROLE FINANCEIRO
+        // ============================================
+        function addToArenaPaid(month, amount) {
+            if (!AppState.financialControl[month]) {
+                AppState.financialControl[month] = {
+                    arenaPaid: 0,
+                    dailyBox: 0,
+                    dailyPlayers: []
+                };
+            }
+            AppState.financialControl[month].arenaPaid += amount;
+        }
+
+        function removeFromArenaPaid(month, amount) {
+            if (!AppState.financialControl[month]) {
+                AppState.financialControl[month] = {
+                    arenaPaid: 0,
+                    dailyBox: 0,
+                    dailyPlayers: []
+                };
+            }
+            AppState.financialControl[month].arenaPaid -= amount;
+            if (AppState.financialControl[month].arenaPaid < 0) {
+                AppState.financialControl[month].arenaPaid = 0;
+            }
+        }
+
+        function addToDailyBox(gameDate, userId, userName) {
+            // Extrair mês do jogo (formato YYYY-MM)
+            const date = new Date(gameDate);
+            const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+
+            if (!AppState.financialControl[month]) {
+                AppState.financialControl[month] = {
+                    arenaPaid: 0,
+                    dailyBox: 0,
+                    dailyPlayers: []
+                };
+            }
+
+            // Verificar se já foi contabilizado para evitar duplicação
+            const alreadyAdded = AppState.financialControl[month].dailyPlayers.some(
+                p => p.userId === userId && p.gameDate === gameDate
+            );
+
+            if (!alreadyAdded) {
+                AppState.financialControl[month].dailyBox += 15;
+                AppState.financialControl[month].dailyPlayers.push({
+                    userId,
+                    userName,
+                    gameDate,
+                    amount: 15,
+                    timestamp: Date.now()
+                });
+            }
+        }
+
         function togglePaymentStatus(userId, month) {
             const user = AppState.users.find(u => u.id === userId);
             if (!user) return;
@@ -2874,7 +3404,23 @@
                 user.monthlyPayments[month] = { paid: false };
             }
 
-            user.monthlyPayments[month].paid = !user.monthlyPayments[month].paid;
+            const wasPaid = user.monthlyPayments[month].paid;
+            user.monthlyPayments[month].paid = !wasPaid;
+
+            // Quando marcar como pago, adicionar à arena
+            if (user.monthlyPayments[month].paid) {
+                const monthlyUsers = AppState.users.filter(u => u.paymentType === 'monthly');
+                const currentFee = AppState.monthlyFees[month] || 0;
+                const perPersonFee = monthlyUsers.length > 0 ? currentFee / monthlyUsers.length : 0;
+                addToArenaPaid(month, perPersonFee);
+            } else {
+                // Se desmarcar, remover da arena
+                const monthlyUsers = AppState.users.filter(u => u.paymentType === 'monthly');
+                const currentFee = AppState.monthlyFees[month] || 0;
+                const perPersonFee = monthlyUsers.length > 0 ? currentFee / monthlyUsers.length : 0;
+                removeFromArenaPaid(month, perPersonFee);
+            }
+
             saveState();
 
             const status = user.monthlyPayments[month].paid ? 'PAGO ✓' : 'PENDENTE';
@@ -2954,6 +3500,9 @@
                 case 'payments':
                     content = PaymentsScreen();
                     break;
+                case 'financial':
+                    content = FinancialControlScreen();
+                    break;
                 default:
                     content = LoginScreen();
             }
@@ -3000,6 +3549,3 @@
     </script>
 </body>
 </html>
-
-
-
